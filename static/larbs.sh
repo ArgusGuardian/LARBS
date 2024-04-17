@@ -243,6 +243,16 @@ installffaddons(){
 	[ ! -f  "$pdir/chrome/userContent.css" ] && sudo -u "$name" echo ".vimvixen-console-frame { color-scheme: light !important; }
 #category-more-from-mozilla { display: none !important }" > "$pdir/chrome/userContent.css"
 }
+installfont(){
+	# Download font zip file
+	wget -O /tmp/IosevkaTerm.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/IosevkaTerm.zip
+
+	# Unzip font to /usr/share/fonts/
+	unzip /tmp/IosevkaTerm.zip -d /usr/share/fonts/.
+
+	# Remove downloaded zip file
+	rm /tmp/IosevkaTerm.zip
+}
 
 finalize() {
 	whiptail --title "All done!" \
@@ -374,6 +384,7 @@ echo "%wheel ALL=(ALL:ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/
 echo "Defaults editor=/usr/bin/nvim" >/etc/sudoers.d/02-larbs-visudo-editor
 mkdir -p /etc/sysctl.d
 echo "kernel.dmesg_restrict = 0" > /etc/sysctl.d/dmesg.conf
-
+# install Iosevka font
+installfont
 # Last message! Install complete!
 finalize
