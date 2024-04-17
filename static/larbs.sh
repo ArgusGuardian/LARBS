@@ -6,8 +6,8 @@
 
 ### OPTIONS AND VARIABLES ###
 
-dotfilesrepo="https://github.com/lukesmithxyz/voidrice.git"
-progsfile="https://raw.githubusercontent.com/LukeSmithxyz/LARBS/master/static/progs.csv"
+dotfilesrepo="https://github.com/ArgusGuardian/voidrice.git"
+progsfile="https://raw.githubusercontent.com/ArgusGuardian/LARBS/master/static/progs.csv"
 aurhelper="yay"
 repobranch="master"
 export TERM=ansi
@@ -26,7 +26,7 @@ error() {
 
 welcomemsg() {
 	whiptail --title "Welcome!" \
-		--msgbox "Welcome to Luke's Auto-Rice Bootstrapping Script!\\n\\nThis script will automatically install a fully-featured Linux desktop, which I use as my main machine.\\n\\n-Luke" 10 60
+		--msgbox "Welcome to Alaa Eddine's Auto-Rice Bootstrapping Script!\\n\\nThis script will automatically install a fully-featured Linux desktop, which I use as my main machine.\\n\\n-Luke" 10 60
 
 	whiptail --title "Important Note!" --yes-button "All ready!" \
 		--no-button "Return..." \
@@ -318,8 +318,8 @@ installationloop
 putgitrepo "$dotfilesrepo" "/home/$name" "$repobranch"
 rm -rf "/home/$name/.git/" "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
 
-# Install vim plugins if not alread present.
-[ ! -f "/home/$name/.config/nvim/autoload/plug.vim" ] && vimplugininstall
+# # Install vim plugins if not alread present.
+# [ ! -f "/home/$name/.config/nvim/autoload/plug.vim" ] && vimplugininstall
 
 # Most important command! Get rid of the beep!
 rmmod pcspkr
@@ -347,25 +347,25 @@ echo "export \$(dbus-launch)" >/etc/profile.d/dbus.sh
 	Option "Tapping" "on"
 EndSection' >/etc/X11/xorg.conf.d/40-libinput.conf
 
-# All this below to get Librewolf installed with add-ons and non-bad settings.
-
-whiptail --infobox "Setting browser privacy settings and add-ons..." 7 60
-
-browserdir="/home/$name/.librewolf"
-profilesini="$browserdir/profiles.ini"
-
-# Start librewolf headless so it generates a profile. Then get that profile in a variable.
-sudo -u "$name" librewolf --headless >/dev/null 2>&1 &
-sleep 1
-profile="$(sed -n "/Default=.*.default-default/ s/.*=//p" "$profilesini")"
-pdir="$browserdir/$profile"
-
-[ -d "$pdir" ] && makeuserjs
-
-[ -d "$pdir" ] && installffaddons
-
-# Kill the now unnecessary librewolf instance.
-pkill -u "$name" librewolf
+# # All this below to get Librewolf installed with add-ons and non-bad settings.
+#
+# whiptail --infobox "Setting browser privacy settings and add-ons..." 7 60
+#
+# browserdir="/home/$name/.librewolf"
+# profilesini="$browserdir/profiles.ini"
+#
+# # Start librewolf headless so it generates a profile. Then get that profile in a variable.
+# sudo -u "$name" librewolf --headless >/dev/null 2>&1 &
+# sleep 1
+# profile="$(sed -n "/Default=.*.default-default/ s/.*=//p" "$profilesini")"
+# pdir="$browserdir/$profile"
+#
+# [ -d "$pdir" ] && makeuserjs
+#
+# [ -d "$pdir" ] && installffaddons
+#
+# # Kill the now unnecessary librewolf instance.
+# pkill -u "$name" librewolf
 
 # Allow wheel users to sudo with password and allow several system commands
 # (like `shutdown` to run without password).
