@@ -248,7 +248,8 @@ installfont(){
 	wget -O /tmp/IosevkaTerm.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/IosevkaTerm.zip
 
 	# Unzip font to /usr/share/fonts/
-	unzip /tmp/IosevkaTerm.zip -d /usr/share/fonts/.
+	sudo mkdir /usr/share/fonts/IosevkaTerm
+	sudo unzip /tmp/IosevkaTerm.zip -d /usr/share/fonts/IosevkaTerm/.
 
 	# Remove downloaded zip file
 	rm /tmp/IosevkaTerm.zip
