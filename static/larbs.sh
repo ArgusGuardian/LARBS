@@ -245,14 +245,14 @@ installffaddons(){
 }
 installfont(){
 	# Download font zip file
-	wget -O /tmp/IosevkaTerm.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/IosevkaTerm.zip
+	wget -O /tmp/JetBrainsMono.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
 
 	# Unzip font to /usr/share/fonts/
-	sudo mkdir /usr/share/fonts/IosevkaTerm
-	sudo unzip /tmp/IosevkaTerm.zip -d /usr/share/fonts/IosevkaTerm/.
+	sudo mkdir /usr/share/fonts/JetBrainsMono
+	sudo unzip /tmp/JetBrainsMono.zip -d /usr/share/fonts/JetBrainsMono/.
 
 	# Remove downloaded zip file
-	rm /tmp/IosevkaTerm.zip
+	rm /tmp/JetBrainsMono.zip
 }
 
 finalize() {
@@ -385,7 +385,7 @@ echo "%wheel ALL=(ALL:ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/
 echo "Defaults editor=/usr/bin/nvim" >/etc/sudoers.d/02-larbs-visudo-editor
 mkdir -p /etc/sysctl.d
 echo "kernel.dmesg_restrict = 0" > /etc/sysctl.d/dmesg.conf
-# install Iosevka font
+# install Jetbrains font
 installfont
 # Last message! Install complete!
 finalize
